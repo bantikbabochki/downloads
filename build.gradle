@@ -1,0 +1,49 @@
+plugins {
+    id("java")
+    id("io.qameta.allure") version "3.0.1"
+
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+ext{
+    lombokVersion = '1.18.42'
+    allureVersion = '2.31.0'
+}
+
+dependencies {
+    implementation(platform("org.junit:junit-bom:5.10.0"))
+    implementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.29.0")
+    implementation 'org.aeonbits.owner:owner:1.0.12'
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    implementation "io.qameta.allure:allure-junit5:${allureVersion}"
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
+    implementation 'commons-io:commons-io:2.21.0'
+    implementation("com.github.javafaker:javafaker:1.0.2")
+    implementation 'com.codeborne:selenide:7.12.3'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    implementation 'org.apache.pdfbox:pdfbox:2.0.31'
+    implementation 'org.apache.poi:poi:5.2.5'
+    implementation 'org.apache.poi:poi-ooxml:5.2.5'
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
+

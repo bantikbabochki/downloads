@@ -1,0 +1,5 @@
+<aspectj>
+    <aspects>
+        <aspect name="utils.LoggingAspect"/>
+    </aspects>
+</aspectj>
